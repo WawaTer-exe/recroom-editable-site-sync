@@ -4,6 +4,8 @@ import { join, relative } from "node:path";
 const archiveDir = process.argv[2] || "dist-archive";
 const profileFile = process.argv[3] || "seed/profile_photos_live_full.json";
 const roomFile = process.argv[4] || "seed/room_photos_live.json";
+const mysticalPhotoFile = process.argv[5] || "seed/mystical/photos.json";
+const mysticalRoomFile = process.argv[6] || "seed/mystical/rooms.json";
 
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -32,6 +34,14 @@ for (const item of profiles) {
   const list = profilePhotos.get(item.username) || [];
   const url = normalizeUrl(item.imageUrl);
   if (!list.includes(url)) list.push(url);
+  profilePhotos.set(item.username, list);
+}
+const mysticalPhotos = await readFile(mysticalPhotoFile, "utf8").then(JSON.parse).catch(() => []);
+const mysticalRooms = await readFile(mysticalRoomFile, "utf8").then(JSON.parse).catch(() => ({ rooms: [] }));
+for (const item of mysticalPhotos) {
+  if (!item.imageUrl) continue;
+  const list = profilePhotos.get(item.username) || [];
+  if (!list.includes(item.imageUrl)) list.push(item.imageUrl);
   profilePhotos.set(item.username, list);
 }
 const roomPhotos = new Map();
@@ -102,4 +112,27 @@ for (const [username, photos] of profilePhotos) {
   await writeFile(profileFile, html, "utf8");
   injected += 1;
 }
-console.log(`Injected archived media into ${injected} route pages from ${profilePhotos.size} profiles and ${roomPhotos.size} rooms.`);
+const mysticalProfile = "Mystical.....";
+const mysticalProfileDir = join(archiveDir, "user", encodeURIComponent(mysticalProfile));
+const mysticalProfileFile = join(mysticalProfileDir, "index.html");
+try { await readFile(mysticalProfileFile, "utf8"); } catch {
+  await (await import("node:fs/promises")).mkdir(mysticalProfileDir, { recursive: true });
+  const photos = profilePhotos.get(mysticalProfile) || [];
+  const photoCards = photos.map((url, index) => `<img loading="lazy" src="${escapeHtml(url)}" alt="Mystical..... public photo ${index + 1}" />`).join("");
+  const roomCards = (mysticalRooms.rooms || []).map(room => `<a class="archive-room-link" href="../../room/${encodeURIComponent(room.slug)}/"><strong>${escapeHtml(room.slug)}</strong><span>${escapeHtml(room.description || "Public room from the Mystical..... profile")}</span></a>`).join("");
+  const profileHtml = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DJ Mystic @Mystical.....</title>${style}<style>.archive-profile{max-width:1180px;margin:auto;padding:28px 24px}.archive-profile h1{margin-bottom:4px}.archive-profile .meta{color:#aaa;margin-bottom:24px}.archive-room-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.archive-room-link{display:flex;flex-direction:column;gap:6px;padding:14px;background:#252525;border-radius:10px;color:#eee;text-decoration:none}.archive-room-link span{color:#aaa;font-size:13px}.archive-profile img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px}</style></head><body><main class="archive-profile"><p><a href="../../">Back to DreamRec archive</a></p><h1>DJ Mystic</h1><div class="meta">@Mystical..... · 474 subscribers · Joined August 02 2022</div><p>Public profile archive of Mystical....., including publicly accessible photos and room/game links.</p><h2>Public rooms and games</h2><div class="archive-room-list">${roomCards}</div><h2>Mystical..... public photos</h2><div class="archive-media-grid">${photoCards}</div></main></body></html>`;
+  await writeFile(mysticalProfileFile, profileHtml, "utf8");
+  injected += 1;
+}
+for (const room of mysticalRooms.rooms || []) {
+  const roomDir = join(archiveDir, "room", encodeURIComponent(room.slug));
+  const roomFilePath = join(roomDir, "index.html");
+  try { await readFile(roomFilePath, "utf8"); continue; } catch {}
+  await (await import("node:fs/promises")).mkdir(roomDir, { recursive: true });
+  const photos = roomPhotos.get(room.slug) || [];
+  const photoCards = photos.map((url, index) => `<img loading="lazy" src="${escapeHtml(url)}" alt="${escapeHtml(room.slug)} public photo ${index + 1}" />`).join("");
+  const roomHtml = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(room.slug)} · DreamRec archive</title>${style}<style>.archive-room{max-width:1100px;margin:auto;padding:28px 24px}.archive-room .meta{color:#aaa}.archive-room img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px}</style></head><body><main class="archive-room"><p><a href="../../user/${encodeURIComponent(mysticalProfile)}/">Back to Mystical.....</a> · <a href="../../">DreamRec archive</a></p><h1>${escapeHtml(room.slug)}</h1><p class="meta">Public room/game link from @Mystical.....</p><p>${escapeHtml(room.description || "Public room information archived from recroom.network.")}</p><p><a href="https://recroom.network/room/${encodeURIComponent(room.slug)}">Original public room page</a></p><div class="archive-media-grid">${photoCards || `<p class="archive-media-note">No public room-photo record was available in the captured catalog.</p>`}</div></main></body></html>`;
+  await writeFile(roomFilePath, roomHtml, "utf8");
+  injected += 1;
+}
+console.log(`Injected archived media into ${injected} route pages from ${profilePhotos.size} profiles and ${roomPhotos.size} rooms; Mystical..... catalog: ${mysticalPhotos.length} photos, ${(mysticalRooms.rooms || []).length} rooms.`);
