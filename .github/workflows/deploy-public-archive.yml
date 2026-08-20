@@ -26,7 +26,7 @@ jobs:
           node-version: 22
       - name: Restore verified public archive snapshot
         env:
-          ARCHIVE_SNAPSHOT_URL: https://files.manuscdn.com/user_upload_by_module/session_file/310519663865592103/sxAhOvcDejqlfqLz.gz
+          ARCHIVE_SNAPSHOT_URL: https://files.manuscdn.com/user_upload_by_module/session_file/310519663865592103/RaimIKhChKORFPnT.gz
         run: |
           curl --fail --location --retry 3 --retry-delay 2 "$ARCHIVE_SNAPSHOT_URL" --output /tmp/dist-archive.tar.gz
           rm -rf dist-archive
