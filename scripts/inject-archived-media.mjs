@@ -64,4 +64,25 @@ for (const file of await walk(archiveDir)) {
   await writeFile(file, html, "utf8");
   injected += 1;
 }
+
+// Some public profile-photo pages were not present in the crawled HTML snapshot.
+// Generate lightweight read-only archive pages for catalog entries so those photos
+// remain browseable on GitHub Pages without a live backend.
+for (const [username, photos] of profilePhotos) {
+  if (!photos.length) continue;
+  const profileDir = join(archiveDir, "user", encodeURIComponent(username), "photos");
+  const profileFile = join(profileDir, "index.html");
+  try {
+    await readFile(profileFile, "utf8");
+    continue;
+  } catch {
+    // Create the missing static route below.
+  }
+  await (await import("node:fs/promises")).mkdir(profileDir, { recursive: true });
+  const title = `${username} archived photos`;
+  const cards = photos.slice(0, 48).map((url, index) => `<img loading="lazy" src="${escapeHtml(url)}" alt="${escapeHtml(title)} ${index + 1}" />`).join("");
+  const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)}</title>${style}</head><body><main class="archive-media-fallback"><p><a href="../../../">Back to archive</a></p><h1>${escapeHtml(title)}</h1><div class="archive-media-grid">${cards}</div><p class="archive-media-note">Archived public media reference. Images are served from the original public image host.</p></main></body></html>`;
+  await writeFile(profileFile, html, "utf8");
+  injected += 1;
+}
 console.log(`Injected archived media into ${injected} route pages from ${profilePhotos.size} profiles and ${roomPhotos.size} rooms.`);
