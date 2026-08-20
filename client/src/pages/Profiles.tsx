@@ -1,0 +1,5 @@
+import { useState } from "react";
+import { Link } from "wouter";
+import { trpc } from "@/lib/trpc";
+
+export default function Profiles() { const [query, setQuery] = useState(""); const { data = [], isLoading } = trpc.profiles.list.useQuery({ query: query.trim() || undefined }); return <main className="rr-subpage"><div className="rr-subpage-head"><div><h1>Profiles</h1><p>Public player profiles from the recovered community archive.</p></div><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search profiles" className="search-input" /></div>{isLoading ? <div className="rr-empty">Loading profiles…</div> : <div className="rr-profile-grid">{data.map(profile => <Link key={profile.id} href={`/user/${encodeURIComponent(profile.username)}`} className="rr-profile-row"><img src={profile.avatarUrl || "https://img.recroom.network/DefaultProfileImage?cropSquare=true&width=192&height=192"} alt="" /><span><strong>{profile.displayName}</strong><span>@{profile.username}</span></span></Link>)}</div>}</main>; }
