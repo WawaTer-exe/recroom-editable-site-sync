@@ -1,0 +1,46 @@
+{
+  "RecRoomGallery": {
+    "creator": "eggsl",
+    "description": "The Rec Room Gallery is a unique art gallery that switches out once every week, showcasing creator’s works in Art and Circuits. Hangout with some amazing creators and get inspired. See you at the events!",
+    "visits": "2.3m",
+    "cheers": "107,785",
+    "capacity": 40,
+    "published": "May 09 2019",
+    "platforms": ["VR"],
+    "tags": ["hangout", "art", "beta", "nomp", "limitsv2", "screen", "walkvr", "teleportvr", "junior", "pickup"],
+    "source": "https://recroom.network/room/RecRoomGallery"
+  },
+  "MakerPenClassQandA": {
+    "creator": "EyesDraws",
+    "description": "Check out what the amazing Creator Community is doing! Meet friends, explore your creative ideas! Sprout a new idea with every innovative design! Discord: https://discord.gg/fascZKHFxF",
+    "visits": "316.8k",
+    "cheers": "4,347",
+    "capacity": 40,
+    "published": "October 27 2018",
+    "platforms": ["VR"],
+    "tags": ["beta", "creativeclub", "nomp", "revival", "screen", "walkvr", "teleportvr", "junior", "pickup"],
+    "source": "https://recroom.network/room/MakerPenClassQandA"
+  },
+  "rp_unioncity": {
+    "creator": "Lgzr",
+    "description": "Roleplay oriented player-v-player action, that comes with an in-game currency and an immersive environment. Wall-glitching may result in a kick.",
+    "visits": "2.2m",
+    "cheers": "38,330",
+    "capacity": 40,
+    "published": "March 24 2019",
+    "platforms": ["VR"],
+    "tags": ["pvp", "action", "beta", "roleplay", "screen", "walkvr"],
+    "source": "https://recroom.network/room/rp_unioncity"
+  },
+  "ArmadiIIoPVP": {
+    "creator": "Gridlig",
+    "description": "Have a drunken barfight in the saloon or duel in the middle of the town. OR, ride the train to Valentine from RDR! The cowboys return! http://discord.gg/6bzHrQfb4w",
+    "visits": "2.9m",
+    "cheers": "62,273",
+    "capacity": 40,
+    "published": "July 12 2019",
+    "platforms": ["VR"],
+    "tags": ["pvp", "julrrmonthly", "screen", "walkvr", "junior"],
+    "source": "https://recroom.network/room/ArmadiIIoPVP"
+  }
+}
