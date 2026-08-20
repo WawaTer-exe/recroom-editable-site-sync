@@ -34,8 +34,10 @@ jobs:
           tar -xzf /tmp/dist-archive.tar.gz -C dist-archive
           test -s dist-archive/index.html
           test -s dist-archive/_archive/routes.json
-      - name: Inject archived profile and room photos
-        run: node scripts/inject-archived-media.mjs dist-archive seed/profile_photos_live_full.json seed/room_photos_live.json
+      - name: Inject archived profile, room photos, and Mystical..... catalog
+        run: node scripts/inject-archived-media.mjs dist-archive seed/profile_photos_live_full.json seed/room_photos_live.json seed/mystical/photos.json seed/mystical/rooms.json
+      - name: Apply archive UI and cookie consent
+        run: node scripts/apply-archive-ui.mjs dist-archive
       - name: Apply DreamRec branding
         run: node scripts/apply-dreamrec-branding.mjs dist-archive
       - name: Configure Pages
