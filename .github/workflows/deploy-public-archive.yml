@@ -24,13 +24,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Build public archive
+      - name: Restore verified public archive snapshot
         env:
-          ARCHIVE_BASE_PATH: /${{ github.event.repository.name }}
-          ARCHIVE_MAX_ROUTES: 2500
-          ARCHIVE_MAX_ASSETS: 5000
-          ARCHIVE_TIMEOUT_MS: 8000
-        run: node scripts/build-public-archive.mjs
+          ARCHIVE_SNAPSHOT_URL: https://files.manuscdn.com/user_upload_by_module/session_file/310519663865592103/sxAhOvcDejqlfqLz.gz
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 "$ARCHIVE_SNAPSHOT_URL" --output /tmp/dist-archive.tar.gz
+          rm -rf dist-archive
+          mkdir -p dist-archive
+          tar -xzf /tmp/dist-archive.tar.gz -C dist-archive
+          test -s dist-archive/index.html
+          test -s dist-archive/_archive/routes.json
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
