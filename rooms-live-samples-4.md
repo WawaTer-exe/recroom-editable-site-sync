@@ -1,0 +1,4 @@
+
+`/room/MyLittleMonsters` exposes creator `Coach`, description beginning “Your Monster Caretaking Adventure Awaits! — New Update! Monsters! Now with Personality! …”, cheer count `97,362`, tags `#casual`, `#roleplay`, `#beta`, `#decoration`, `#crafting`, `#sandbox`, `#limitsv2`, `#rrstudio`, `#pets`, `#cozy`, `#rro`, `#screen`, `#walkvr`, `#teleportvr`, `#junior`, and `#pickup`, visits `6.3m`, published `June 13 2024`, capacity `8`, and platform VR.
+
+`/room/Paintball` exposes creator `Coach`, description “Red and Blue teams splat each other in capture the flag and team battle.”, cheer count `1,383,553`, tags `#paintball`, `#pvp`, `#4v4`, `#beta`, `#rro`, `#screen`, `#walkvr`, `#teleportvr`, `#junior`, and `#pickup`, visits `216.2m`, published `August 29 2018`, capacity `8`, and platform VR.

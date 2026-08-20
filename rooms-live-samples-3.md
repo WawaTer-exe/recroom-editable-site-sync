@@ -1,0 +1,4 @@
+
+`/room/CriticalResponse` exposes creator `PockyDev`, description beginning “Tackle wacky AI-powered 911 calls ranging from accidental cat burglars to alien abductions gone wrong…”, cheer count `6,129`, tags `#roleplay`, `#beta`, `#ai`, `#911`, `#simulator`, `#simulation`, `#rrstudio`, `#gameai`, `#dispatch`, `#operator`, `#screen`, `#walkvr`, `#teleportvr`, and `#pickup`, visits `148.9k`, published `July 16 2025`, capacity `4`, and platform VR.
+
+`/room/RunTheBlock` exposes creator `Coach`, description “3–2–1–GO!!! Run, jump, and race your friends in RUN THE BLOCK, the coolest parkour festival in Rec City! Upgrade your abilities, complete Challenges, and compete in Public Events to reach S Rank and become Top Dawg!”, cheer count `33,818`, tags `#racing`, `#game`, `#beta`, `#rrstudio`, `#obby`, `#rro`, `#screen`, `#walkvr`, and `#junior`, visits `3.2m`, published `December 11 2024`, and capacity `10` on VR.

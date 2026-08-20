@@ -1,0 +1,111 @@
+# Project TODO
+
+- [x] Establish dark Rec Room-style public layout and exact five-label navigation order: Home, Profiles, Rooms, Blog, Directory
+- [x] Build landing page with featured profiles and featured content
+- [x] Build public profile routes at /user/:username
+- [x] Display profile avatar, display name, bio, subscriber count, join date, room showcase, and photo feed tab
+- [x] Build public profile search and browsable profiles index with avatar thumbnails and usernames
+- [x] Add admin login and role-based access control for admin versus regular users
+- [x] Build protected admin dashboard using the existing dashboard layout components
+- [x] Add admin CRUD for profiles: username, display name, bio, avatar, banner, join date, subscriber count
+- [x] Add admin CRUD for rooms: title, description, cover image, player count, cheer count
+- [x] Add admin CRUD for blog/news pages with title, category, author, publish date, and rich-text body
+- [x] Add admin CRUD for navigation categories and directory sections
+- [x] Add S3-backed admin media upload workflow for avatars, banners, room covers, and blog images
+- [x] Seed database with 167 captured profiles including username, display name, and join date
+- [x] Add database schema and migrations for all editable content models
+- [x] Add tRPC procedures for public reads and admin-protected mutations
+- [x] Add Vitest coverage for role enforcement, CRUD procedures, public profile reads, and seed parsing
+- [x] Verify responsive public routes and protected admin dashboard in browser
+- [x] Save final checkpoint after all requested features pass validation
+- [x] Replace placeholder dashboard sidebar items with real admin navigation and remove dead links
+- [x] Fix room editor to require schema-valid slug and remove unsupported creator field
+- [x] Add a proper blog editor body field instead of raw JSON-only editing
+- [x] Show uploaded media assets and allow applying them to content image fields
+- [x] Verify admin dashboard and key routes at mobile and desktop widths
+- [x] Add real profile tabs and make room showcase profile-specific where supported
+- [x] Enforce non-empty schema-valid room slugs in the admin editor and surface mutation errors
+- [x] Let admins apply uploaded media to profile bannerUrl as well as avatarUrl
+- [x] Capture desktop and mobile verification for the admin dashboard and key public routes
+- [x] Document the global-room fallback used when no profile-room relationship exists in the recovered schema
+- [x] Capture mobile verification for profile detail and directory routes
+- [x] Add Vitest coverage for admin create, update, and delete mutations plus forbidden access to those mutations
+- [x] Rework public visual system and page layouts to closely reproduce rec.net/recroom.network rather than an inspired design
+- [x] Verify the revised public routes against reference layouts at desktop and mobile breakpoints
+- [x] Rebuild the public site as an exact recroom.network reproduction using its reference structure, modules, assets, and responsive behavior
+- [x] Verify the reproduction against recroom.network screenshots at desktop and mobile breakpoints
+- [x] Collect and catalog as many publicly accessible recroom.network photos as possible from live pages and available backups
+- [x] Import collected photo metadata into the editable activity/photo feed without including private or login-gated content
+- [x] Apply the recroom.network reproduction consistently across Rooms, Blog, Profiles, Profile, and Directory routes
+- [x] Capture and document desktop/mobile verification for all key reproduced routes against the reference layout
+- [x] Systematically catalog additional publicly accessible live recroom.network image pages beyond the recovered local snapshots
+- [x] Investigate additional live recroom.network image page IDs beyond the snapshot-derived 84-page inventory; no new public IDs were discoverable
+- [x] Document the live image-page discovery method and separate newly found counts from snapshot-derived counts
+- [x] Check additional public recroom.network pages such as Rooms, News, Events, Creator Hub, and Download for image-page URLs beyond the snapshot-derived set
+- [x] Replace the overbroad live-discovery completion item with a documented limitation if no additional public IDs are discoverable
+- [x] Save revised exact-reference and photo-archive checkpoint after final verification
+- [x] Add secure admin account creation with per-account hashed passwords and role assignment
+- [x] Add avatar upload selection to account creation and profile management
+- [x] Add admin photo manager for uploading, browsing, applying, and deleting photo assets
+- [x] Add tests for password hashing, account authorization, avatar assignment, and photo-manager CRUD
+- [x] Package the complete project as a downloadable ZIP
+- [x] Keep Recgoblinguiscool out of source code and use it only as a bootstrap secret, hashing it before persistence
+- [x] Connect managed-account password login to a signed session and the existing admin RBAC context
+- [x] Add media-manager upload/create and list/browse Vitest coverage
+- [x] Remove the plaintext bootstrap password from all source-controlled tests and validate only secret presence/behavior
+- [x] Add a managed-account login form that calls auth.managedLogin and supports password-based sign-in
+- [x] Test managed-session restoration through createContext/auth.me and admin versus user RBAC behavior
+- [x] Verify managed-session restoration through createContext and auth.me, with admin/user role assertions
+- [x] Verify a non-admin managed session through createContext/auth.me and confirm admin procedures are forbidden
+- [x] Import actual public /user/ profile metadata into editable profile records; 167 account records were enriched through the public endpoint and 17 public bios were available in reachable sources
+- [x] Expand the editable photo archive with 756 deduplicated public profile photos and 9 persisted live room-photo references
+- [x] Extract real public rooms from recroom.network/rooms and seed them as editable room records
+- [x] Update profile and room pages to display the imported real data
+- [x] Validate the expanded data import and routes, then save a new checkpoint and ZIP; TypeScript, 20 Vitest tests, database counts, and valid room/profile screenshots pass
+- [x] Add archive seed-integrity tests for the 167 profiles, Mystical bio, expanded public photos, and nine live rooms
+- [x] Capture mobile verification for the expanded rooms and profile-detail routes
+- [x] Enrich all reachable public profiles through the discovered account and bio endpoints, then re-seed their available metadata; all 167 account records succeeded, with 17 non-empty bios returned
+- [x] Persist and expose room-photo/image-page references in the editable archive; 9 public room-photo references are seeded and visible on room detail pages
+
+- [x] Add admin-editable announcement text, link, and visibility controls
+- [x] Add admin-editable featured-room selection and ordering controls for the homepage
+- [x] Import ValArtAcademy, RecRoomGallery, MakerPenClassQandA, rp_unioncity, and ArmadiIIoPVP with public metadata
+- [x] Import recoverable public room-photo references for the five requested rooms into roomPhotos; 234 references are seeded, including 105 ValArtAcademy, 4 RecRoomGallery, 13 MakerPenClassQandA, 1 rp_unioncity, and 102 ArmadiIIoPVP references
+- [x] Add tests for public settings reads, successful admin settings updates, RBAC, and five-room seed integrity
+- [x] Verify the five room routes, homepage featured-room rail, announcement rendering, and protected admin settings contracts; public screenshots and 24 Vitest tests pass, while direct admin-panel browser inspection remains authentication-gated
+- [x] Generate and integrity-check an updated ZIP archive after the final checkpoint; /home/ubuntu/recroom-editable-site-requested-rooms.zip passed unzip integrity testing
+- [x] Save a new checkpoint containing the requested announcement, featured-room, and room-import features; checkpoint a714a4b4
+- [x] Deliver the updated project checkpoint and ZIP archive
+
+- [x] Inventory and deduplicate all 140 additional room URLs from Pasted_content_01.txt
+- [x] Recover public metadata where rendered pages were available; all 140 source URLs are preserved, and AnEveningStroll has verified creator, description, metrics, date, capacity, platform, tags, and cover metadata
+- [x] Recover and persist rendered public room-image references available in-session; AnEveningStroll contributed 103 deduplicated references, while raw HTTP app-shell pages did not expose their hydrated feeds
+- [x] Expand the public profile/account seed beyond 167 using five independently verified public `/user/:username` routes returning HTTP 200; corrected public display names bring the seed to 172 records
+- [x] Expand the deduplicated public room-photo archive from additional rendered public sources, increasing roomPhotos from 234 to 337 while retaining 756 profile photos
+- [x] Add regression coverage for the expanded 172-profile, 154-room, and greater-than-300 room-photo seed inventory
+- [x] Validate the expanded routes and media rendering, then save a new checkpoint and ZIP; TypeScript and 24 Vitest tests pass, database counts are 172 profiles, 154 rooms, 756 profile photos, and 337 room photos, and screenshots cover `/`, `/rooms`, and `/room/AnEveningStroll`
+- [x] Deliver the expanded checkpoint and ZIP archive
+
+- [x] Add protected admin bulk room-import parsing with schema validation and duplicate detection
+- [x] Add bulk room preview showing valid, duplicate, and invalid records before import
+- [x] Add bulk room import persistence with room-photo reference support
+- [x] Add Vitest coverage for bulk room validation, duplicate handling, persistence, and RBAC; suite passes with 27 tests
+- [x] Verify the bulk room-import workflow in the admin UI and package a new ZIP; authenticated `/admin` screenshot shows the new section, TypeScript passes, 27 Vitest tests pass, and the ZIP passes integrity testing
+- [x] Save and deliver the bulk-import checkpoint and ZIP archive
+
+- [x] Inspect the referenced GitHub ZIP and compare it with the current project; both supplied GitHub URLs returned public 404 pages
+- [x] Define a recurring public-room synchronization policy with deduplication and update rules; link-only records, URL deduplication, and metadata preservation are implemented
+- [x] Choose the synchronization cadence and execution architecture with the user; approximately 30 minutes was selected and the callback uses platform-managed scheduled execution
+- [x] Implement the selected recurring room synchronization handler and durable job configuration; callback, site-settings state, admin status panel, and 30-minute cron expression are in source
+- [x] Add sync status, last-run, error, and imported-count visibility to the admin panel
+- [x] Add tests for idempotence, duplicate handling, malformed records, and schedule authorization; 29 tests pass
+- [ ] Save and deliver the synchronization checkpoint and operating instructions after production scheduler registration
+
+- [x] Implement approximately 30-minute room synchronization using an always-on or platform-supported recurring execution mode
+- [x] Use safe default policy: preserve existing good metadata, deduplicate URLs, and record link-only entries when a page is reachable but metadata is incomplete
+- [x] Confirm the user’s preferred handling for incomplete records before enabling production synchronization; link-only entries are recorded to ensure discovery visibility
+
+- [x] Implement the 30-minute room-sync callback, safe deduplicated discovery, sync status fields, admin status panel, and 29 passing tests
+- [ ] Deploy the updated site so the scheduled callback is reachable in production
+- [ ] Register the project-level 30-minute Heartbeat job at `/api/scheduled/syncRooms` and persist its task UID
+- [ ] Run the first production sync and verify its imported-count/error status in Admin

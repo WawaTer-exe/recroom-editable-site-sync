@@ -1,0 +1,3 @@
+# Live room detail findings
+
+The public room detail route is `https://recroom.network/room/CloneWarsFR`. The rendered page exposes title `^CloneWarsFR`, creator `PommeSmoke`, a French description, room visits `555.7k`, published date `June 10 2024`, capacity `35`, platform `VR`, and tags including `#fr`, `#boardgame`, `#beta`, `#rp`, `#military`, `#simulation`, `#limitsv2`, `#rrstudio`, `#nomp`, `#screen`, and `#walkvr`. It also exposes multiple room promotional images and a photo grid. The complete browser-extracted image/resource output is saved at `/home/ubuntu/console_outputs/exec_result_2026-08-20_16-35-42_261.txt`.
