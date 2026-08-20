@@ -30,6 +30,9 @@ for (const file of await walk(archiveDir)) {
   html = html.replace(/(<img\b[^>]*?)alt=["']Studio 87["']/gi, "$1alt=\"DreamRec\"");
   html = html.replace(/(<img\b[^>]*?)src=["'][^"']*studio87[^"']*["']/gi, `$1src="${logoUrl}"`);
   html = html.replace(/(<link\b[^>]*?rel=["']preload["'][^>]*?as=["']image["'][^>]*?)href=["'][^"']*studio87[^"']*["']/gi, `$1href="${logoUrl}"`);
+  // The source header uses an inline SVG for the orange Rec Room mark rather than an image URL.
+  // Replace the first header anchor contents, which is the brand link, with the DreamRec image.
+  html = html.replace(/(<header\b[^>]*>[\s\S]*?<a\b[^>]*>)[\s\S]*?(<\/a>)/i, `$1<img alt="DreamRec" width="56" height="56" src="${logoUrl}" />$2`);
 
   if (html !== before) {
     await writeFile(file, html, "utf8");
