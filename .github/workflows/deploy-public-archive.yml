@@ -38,6 +38,10 @@ jobs:
         run: node scripts/inject-archived-media.mjs dist-archive seed/profile_photos_live_full.json seed/room_photos_live.json seed/mystical/photos.json seed/mystical/rooms.json
       - name: Apply archive UI and cookie consent
         run: node scripts/apply-archive-ui.mjs dist-archive
+      - name: Rebuild Mystical..... profile and linked rooms
+        run: node scripts/apply-profile-room-details.mjs dist-archive seed/mystical/rooms.json seed/mystical/photos.json seed/room_photos_live.json seed/rooms_live.json
+      - name: Add shirtcrazyasl public profile
+        run: node scripts/apply-shirt-profile.mjs dist-archive seed/shirtcrazyasl/profile.json seed/shirtcrazyasl/photos.json
       - name: Apply DreamRec branding
         run: node scripts/apply-dreamrec-branding.mjs dist-archive
       - name: Configure Pages
