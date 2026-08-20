@@ -43,7 +43,7 @@ for (const item of rooms) {
   roomPhotos.set(item.roomSlug, list);
 }
 
-const style = `<style data-archive-media>\n.archive-media-fallback{margin:28px auto;max-width:1180px;padding:0 24px 36px}.archive-media-fallback h2{font-size:24px;margin:0 0 16px}.archive-media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}.archive-media-grid img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;background:#252525}.archive-media-card{display:block;color:inherit;text-decoration:none}.archive-media-card span{display:block;padding:8px 2px;color:#ddd;font-size:13px}.archive-media-note{color:#aaa;font-size:13px;margin-top:10px}@media(max-width:640px){.archive-media-fallback{padding-inline:14px}.archive-media-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}\n</style>`;
+const style = `<style data-archive-media>\n.archive-media-fallback{margin:28px auto;max-width:1180px;padding:0 24px 36px}.archive-media-fallback h2{font-size:24px;margin:0 0 16px}.archive-media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}.archive-media-grid img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;background:#252525}.archive-media-card{display:block;color:inherit;text-decoration:none}.archive-media-card span{display:block;padding:8px 2px;color:#ddd;font-size:13px}.archive-media-note{color:#aaa;font-size:13px}.archive-home-gallery{margin-top:18px}.archive-home-gallery + *{margin-top:0}@media(max-width:640px){.archive-media-fallback{padding-inline:14px}.archive-media-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}\n</style>`;
 
 let injected = 0;
 for (const file of await walk(archiveDir)) {
@@ -61,8 +61,10 @@ for (const file of await walk(archiveDir)) {
     if (!homepageCards.length) continue;
     const title = "Archived room photos";
     const cards = homepageCards.map(({ slug, url, index }) => `<a class="archive-media-card" href="room/${encodeURIComponent(slug)}/"><img loading="lazy" src="${escapeHtml(url)}" alt="${escapeHtml(slug)} archived room photo ${index + 1}" /><span>${escapeHtml(slug)}</span></a>`).join("");
-    const block = `${style}<section class="archive-media-fallback" data-archive-media><h2>${title}</h2><div class="archive-media-grid archive-media-room-grid">${cards}</div><p class="archive-media-note">Archived public room media. Images are served from the original public image host.</p></section>`;
-    html = html.replace(/<\/body>/i, `${block}</body>`);
+    const block = `${style}<style data-archive-home-repair>body [aria-busy="true"]{display:none!important}</style><section class="archive-media-fallback archive-home-gallery" data-archive-media><h2>${title}</h2><div class="archive-media-grid archive-media-room-grid">${cards}</div><p class="archive-media-note">Archived public room media. Images are served from the original public image host.</p></section>`;
+    const featuredIndex = html.search(/Featured Rooms/i);
+    if (featuredIndex >= 0) html = html.slice(0, featuredIndex) + block + html.slice(featuredIndex);
+    else html = html.replace(/<\/body>/i, `${block}</body>`);
     await writeFile(file, html, "utf8");
     injected += 1;
     continue;
