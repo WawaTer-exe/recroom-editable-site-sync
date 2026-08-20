@@ -34,6 +34,8 @@ jobs:
           tar -xzf /tmp/dist-archive.tar.gz -C dist-archive
           test -s dist-archive/index.html
           test -s dist-archive/_archive/routes.json
+      - name: Inject archived profile and room photos
+        run: node scripts/inject-archived-media.mjs dist-archive seed/profile_photos_live_full.json seed/room_photos_live.json
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
