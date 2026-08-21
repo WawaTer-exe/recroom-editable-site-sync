@@ -1,0 +1,13 @@
+import { readFile, access } from "node:fs/promises";
+import { join } from "node:path";
+import { spawnSync } from "node:child_process";
+const dir=process.argv[2]||"/tmp/profile-card-preview";
+const must=["index.html","user/Mystical...../index.html","user/godog/index.html","user/shirtcrazyasl/index.html","user/ReliablePanda26/index.html","room/HoodLife/index.html"];
+for(const rel of must) await access(join(dir,rel));
+const home=await readFile(join(dir,"index.html"),"utf8");
+const godog=await readFile(join(dir,"user/godog/index.html"),"utf8");
+const mystical=await readFile(join(dir,"user/Mystical...../index.html"),"utf8");
+const hood=await readFile(join(dir,"room/HoodLife/index.html"),"utf8");
+const checks={search:home.includes("data-archive-search")&&home.includes("People")&&home.includes("Rooms")&&home.includes("ReliablePanda26"),godogCards:(godog.match(/archive-room-link/g)||[]).length>=5&&godog.includes("room preview")&&godog.includes("href=\"../../room/HoodLife/"),mysticalCards:(mystical.match(/archive-room-thumb/g)||[]).length>=45&&mystical.includes("Public rooms and games"),hoodMetadata:hood.includes("957.9k")&&hood.includes("March 07 2025")&&hood.includes("@godog")&&hood.includes("Public room image"),reliableProfile:await readFile(join(dir,"user/ReliablePanda26/index.html"),"utf8").then(x=>x.includes("ReliablePanda26")&&x.includes("800285584"))};
+const injected=(home.match(/<script data-archive-search>([\s\S]*?)<\/script>/)||[])[1];if(!injected)throw new Error("Injected search script missing");await (await import("node:fs/promises")).writeFile("/tmp/generated-archive-search-check.mjs",injected,"utf8");const syntax=spawnSync(process.execPath,["--check","/tmp/generated-archive-search-check.mjs"],{encoding:"utf8"});checks.searchScriptSyntax=syntax.status===0;if(syntax.status!==0)console.error(syntax.stderr);
+console.log(JSON.stringify({checks,allPassed:Object.values(checks).every(Boolean)},null,2));if(!Object.values(checks).every(Boolean))process.exit(1);
