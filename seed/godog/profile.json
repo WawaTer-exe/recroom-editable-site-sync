@@ -1,0 +1,17 @@
+{
+  "username": "godog",
+  "displayName": "godog",
+  "avatarUrl": "https://img.recroom.network/R53yM5xKDUGsvYsz_B6nRg?cropSquare=true&width=192&height=192",
+  "subscribers": "415,046",
+  "joined": "July 13 2018",
+  "bio": "Public godog profile archive captured from the supplied public page.",
+  "rooms": ["TheHood", "DuneBuggiesPvP", "HeavenAndHellPvP04", "JailBreak.", "HoodLife"],
+  "roomCards": [
+    {"slug":"TheHood","description":"The Hood, form gangs, get money, get guns, and do much more!","previewUrl":"https://img.recroom.network/9255rywvf0kv7xthh64t2fml6?width=512","cheers":"415.5k","visits":"16.2m"},
+    {"slug":"DuneBuggiesPvP","description":"This game has Buggies. You can drive them, pretty fast. Go get one.","previewUrl":"https://img.recroom.network/du9wvonlusevqxb0o4vhqg64b?width=512","cheers":"169.6k","visits":"5.7m"},
+    {"slug":"HeavenAndHellPvP04","description":"Join our discord! https://discord.gg/fDWwEfn","previewUrl":"https://img.recroom.network/85018930c53a4ebf864faf11bfad9050?width=512","cheers":"155.2k","visits":"3.8m"},
+    {"slug":"JailBreak.","description":"Break out of jail","previewUrl":"https://img.recroom.network/a1551635b011422cafc77121058bd7f1?width=512","cheers":"128.5k","visits":"2.8m"},
+    {"slug":"HoodLife","description":"Welcome to the Hood Life! Form gangs, buy guns and hash to take over the hood.","previewUrl":"https://img.recroom.network/7j40uln303jqkqcozdurx0bkk?width=512","cheers":"14,052","visits":"957.9k"}
+  ],
+  "source": "https://recroom.network/user/godog"
+}
