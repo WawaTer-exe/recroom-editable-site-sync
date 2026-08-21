@@ -46,6 +46,8 @@ jobs:
         run: node scripts/apply-godog-hoodlife.mjs dist-archive seed/godog/profile.json seed/godog/photos.json seed/hoodlife/room.json seed/hoodlife/photos.json
       - name: Add ReliablePanda26 public profile
         run: node scripts/apply-shirt-profile.mjs dist-archive seed/reliablepanda26/profile.json seed/reliablepanda26/photos.json
+      - name: Apply universal reference-style profile layout
+        run: node scripts/apply-universal-profile-layout.mjs dist-archive
       - name: Add homepage archive search
         run: node scripts/apply-archive-search.mjs dist-archive
       - name: Apply DreamRec branding
