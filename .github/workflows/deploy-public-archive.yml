@@ -42,6 +42,12 @@ jobs:
         run: node scripts/apply-profile-room-details.mjs dist-archive seed/mystical/rooms.json seed/mystical/photos.json seed/room_photos_live.json seed/rooms_live.json
       - name: Add shirtcrazyasl public profile
         run: node scripts/apply-shirt-profile.mjs dist-archive seed/shirtcrazyasl/profile.json seed/shirtcrazyasl/photos.json
+      - name: Add godog profile and HoodLife room
+        run: node scripts/apply-godog-hoodlife.mjs dist-archive seed/godog/profile.json seed/godog/photos.json seed/hoodlife/room.json seed/hoodlife/photos.json
+      - name: Add ReliablePanda26 public profile
+        run: node scripts/apply-shirt-profile.mjs dist-archive seed/reliablepanda26/profile.json seed/reliablepanda26/photos.json
+      - name: Add homepage archive search
+        run: node scripts/apply-archive-search.mjs dist-archive
       - name: Apply DreamRec branding
         run: node scripts/apply-dreamrec-branding.mjs dist-archive
       - name: Configure Pages
